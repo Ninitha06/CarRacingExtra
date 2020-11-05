@@ -18,6 +18,7 @@ class Game {
   }
 
   async start(){
+   
     if(gameState === 0){
       player = new Player();
       var playerCountRef = await database.ref('playerCount').once("value");
@@ -47,7 +48,7 @@ class Game {
     player.getCarsAtEnd();
     
     if(allPlayers !== undefined){
-      background(rgb(198,135,103));
+      background(rgb(70,70,70));
       image(track, 0,-displayHeight*4,displayWidth, displayHeight*5);
       
       //var display_position = 100;
@@ -96,6 +97,17 @@ class Game {
       gameState = 2;
       player.rank +=1
       Player.updateCarsAtEnd(player.rank)
+     // console.log("You finished successfully at rank " + player.rank);
+      //textSize(30);
+      //text("Your Rank : " + player.rank,displayWidth/2-70, y-120);
+
+      swal({
+        title: `Awesome! Rank ${player.rank}`,
+        text: "You reached the finish line successfully",
+        imageUrl: "images/cup.png",
+        imageSize: "100x100",
+        confirmButtonText: "Ok",
+      });
     }
    
     drawSprites();
@@ -103,6 +115,5 @@ class Game {
 
   end(){
     console.log("Game Ended");
-    console.log(player.rank);
   }
 }
