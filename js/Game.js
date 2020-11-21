@@ -65,9 +65,9 @@ class Game {
         index = index + 1 ;
 
         //position the cars a little away from each other in x direction
-        x = x + 200;
+        x = allPlayers[plr].xDistance
         //use data form the database to display the cars in y direction
-        y = displayHeight - allPlayers[plr].distance;
+        y = displayHeight - allPlayers[plr].yDistance;
         cars[index-1].x = x;
         cars[index-1].y = y;
        // console.log(index, player.index)
@@ -76,7 +76,7 @@ class Game {
         if (index === player.index){
           stroke(10);
           fill("red");
-          ellipse(x,y,60,60);
+          ellipse(cars[index-1].x, cars[index-1].y,60,60);
           cars[index - 1].shapeColor = "red";
           camera.position.x = displayWidth/2;
           camera.position.y = cars[index-1].y;
@@ -89,11 +89,19 @@ class Game {
     }
 
     if(keyIsDown(UP_ARROW) && player.index !== null){
-      player.distance +=10
+      player.yDistance +=10
+      player.update();
+    }
+    if(keyIsDown(LEFT_ARROW) && player.index !== null){
+      player.xDistance -=10
+      player.update();
+    }
+    if(keyIsDown(RIGHT_ARROW) && player.index !== null){
+      player.xDistance +=10
       player.update();
     }
 
-    if(player.distance > 3860){
+    if(player.yDistance > 3860){
       gameState = 2;
       player.rank +=1
       Player.updateCarsAtEnd(player.rank)
@@ -109,11 +117,27 @@ class Game {
         confirmButtonText: "Ok",
       });
     }
+
+    car1.collide(car2);
+    car1.collide(car3);
+    car1.collide(car4);
+    car2.collide(car3);
+    car2.collide(car4);
+    car3.collide(car4);
    
     drawSprites();
   }
 
   end(){
     console.log("Game Ended");
+
+    // for (var i = 0; i< 4 ; i++){
+    //   textSize(30);
+    //   if(player.index==i+1){
+    //    text(player.rank,cars[i].x,cars[i].y-100)
+    //   }
+    // }
+    // gameState=3;
+
   }
 }

@@ -34,6 +34,17 @@ class Form {
       player.name = this.input.value();
       playerCount+=1;
       player.index = playerCount;
+      switch(playerCount){
+        case 1 : xPosition = 375;
+                break;
+        case 2 : xPosition = 575;
+                break;
+        case 3 : xPosition = 775;
+                break;
+        case 4 : xPosition = 975;
+                break;
+      }
+      player.xDistance = xPosition;
       player.update();
       player.updateCount(playerCount);
       this.greeting1.html("Hello " + player.name);
