@@ -89,14 +89,20 @@ class Game {
     }
 
     if(keyIsDown(UP_ARROW) && player.index !== null){
+      driveSound.play(); 
+      driveSound.stop(1);
       player.yDistance +=10
       player.update();
     }
     if(keyIsDown(LEFT_ARROW) && player.index !== null){
+      driveSound.play();
+      driveSound.stop(1);
       player.xDistance -=10
       player.update();
     }
     if(keyIsDown(RIGHT_ARROW) && player.index !== null){
+      driveSound.play();
+      driveSound.stop(1);
       player.xDistance +=10
       player.update();
     }
@@ -104,7 +110,10 @@ class Game {
     if(player.yDistance > 3860){
       gameState = 2;
       player.rank +=1
-      Player.updateCarsAtEnd(player.rank)
+      Player.updateCarsAtEnd(player.rank);
+
+      driveSound.stop();
+      finishSound.play();
      // console.log("You finished successfully at rank " + player.rank);
       //textSize(30);
       //text("Your Rank : " + player.rank,displayWidth/2-70, y-120);
