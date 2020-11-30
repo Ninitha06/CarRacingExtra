@@ -12,6 +12,8 @@ var cars, car1, car2, car3, car4;
 
 var track,loginbg, car1_img, car2_img, car3_img, car4_img;
 
+var driveSound, finishSound;
+
 function preload(){
   loginbg = loadImage("images/bg.jpg");
   track = loadImage("images/track.jpg");
@@ -20,6 +22,8 @@ function preload(){
   car3_img = loadImage("images/car3.png");
   car4_img = loadImage("images/car4.png");
   ground = loadImage("images/ground.png");
+  driveSound = loadSound("sounds/drive.mp3");
+  finishSound = loadSound("sounds/finish.wav");
 }
 
 function setup(){
