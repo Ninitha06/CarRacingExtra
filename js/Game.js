@@ -90,19 +90,19 @@ class Game {
 
     if(keyIsDown(UP_ARROW) && player.index !== null){
       driveSound.play(); 
-      driveSound.stop(1);
+      driveSound.stop(0.5);
       player.yDistance +=10
       player.update();
     }
     if(keyIsDown(LEFT_ARROW) && player.index !== null){
       driveSound.play();
-      driveSound.stop(1);
+      driveSound.stop(0.5);
       player.xDistance -=10
       player.update();
     }
     if(keyIsDown(RIGHT_ARROW) && player.index !== null){
       driveSound.play();
-      driveSound.stop(1);
+      driveSound.stop(0.5);
       player.xDistance +=10
       player.update();
     }
